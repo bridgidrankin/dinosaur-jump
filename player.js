@@ -42,7 +42,7 @@ function handleRun(delta, speedScale) {
         return
     }
 
-    let currentFrameTime: any 
+    let currentFrameTime =  any 
     if (currentFrameTime >= FRAME_TIME) {
         playerFrame = (playerFrame + 1) % PLAYER_FRAME_COUNT
         playerElem.src = 'assets/playerRuns${playerFrame}.png'
