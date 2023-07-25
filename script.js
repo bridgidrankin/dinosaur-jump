@@ -44,10 +44,74 @@ function update(time) {
     if (checkLose()) return handleLose()
     lastTime = time
     window.requestAnimationFrame(update)
-    
+}
+
+function checkLose() {
+    const playerRect = getPlayerRect()
+    return getObstacleRects().some(rect => isCollision(rect, playerRect))
+}
+
+function isCollision(rect1, rect2) {
+    return (
+        rect1.left < rect2.right &&
+        rect1.top < rect2.bottom &&
+        rect1.right > rect2.left &&
+        rect1.bottom > rect2.top 
+    )
+}
+
+function checkIfWeGotNft() {
+    const playerRect = getPlayerRect()
+    if(getNftRects().some(rect => isCollision(rect, playerRect))) {
+        const nftToRemove = document.querySelectorAll("[data-nft]")[0]
+        nftToRemove.remove()
+        nftScore += 1
+        nftScoreElem.textContext = 'NFTs collected: ${nftScore}'
+    }
+}
+
+function updateSpeedScale(delta) {
+    speedScale += delta * SPEED_SCALE_INCREASE
+}
+
+function updateScore(delta) {
+    score += delta * 0.01
+    scoreElem.textContext = 'Wei collected: ${Math.floor(score)}'
+}
+
+function handleStart() {
+    lastTime = null
+    speedScale = 1
+    score = 0
+    setupGround()
+    setupPlayer()
+    setupObstacles()
+    setupNft()
+    startScreenElem.classList.add("hide")
+
+    window.requestAnimationFrame(update)
 }
 
 
+window.totalNFTScore = 0
+window.totalGweiScore = 0
+
+
+function handleLose() {
+    window.totalGweiScore += Math.floor(score)
+    window.totalNFTScore += nftScore
+
+    nftTotalScoreElem.textContent = 'Total NFTs collected: ${window.totalNFTScore}'
+    gweiTotalScoreElem.textContent = 'Total Wei collected: ${window.totalGweiScore}'
+
+    nftScore = 0
+    nftScoreElem.textContent = 'NFTs: ${nftScore}'
+
+    setTimeout(() => {
+        document.addEventListener("keydown", handleStart, { once: true })
+        startScreenElem.classList.remove("hide")
+    }, 100)
+}
 
 function setPixelToGameScale() {
     let gameToPixelScale
