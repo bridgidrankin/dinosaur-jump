@@ -52,7 +52,7 @@ import {
     const obstacle = document.createElement("img")
     obstacle.dataset.obstacle = true
     // todo: set img drugo nft
-    obstacle.src = "assets/obstacle.png"
+    obstacle.src = "imgs/obstacle.png"
     // todo: smeni klasa nft
     obstacle.classList.add("obstacle")
     setCustomProperty(obstacle, "--left", 100)

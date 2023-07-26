@@ -34,18 +34,18 @@ import {
   }
   
   export function setPlayerLose() {
-    playerElem.src = "assets/playerJumps.png"
+    playerElem.src = "imgs/playerJumps.png"
   }
   
   function handleRun(delta, speedScale) {
     if (isJumping) {
-      playerElem.src = `assets/playerJumps.png`
+      playerElem.src = `imgs/playerJumps.png`
       return
     }
   
     if (currentFrameTime >= FRAME_TIME) {
       playerFrame = (playerFrame + 1) % PLAYER_FRAME_COUNT
-      playerElem.src = `assets/playerRuns${playerFrame}.png`
+      playerElem.src = `imgs/playerRuns${playerFrame}.png`
       currentFrameTime -= FRAME_TIME
     }
     currentFrameTime += delta * speedScale
