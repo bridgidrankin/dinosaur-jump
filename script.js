@@ -17,7 +17,8 @@ const nftScoreElem = document.querySelector("[data-nft-score ]")
 
 setPixelToGameScale()
 window.addEventListener("resize", setPixelToGameScale)
-document.addEventListener("keydown", handleStart, { once: true })
+//document.addEventListener("keydown", handleStart, { once: true })
+['keydown', 'click'].forEach(event => document.addEventListener(event, handleStart, {once: true }))
 
 let lastTime
 let speedScale
