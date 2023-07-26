@@ -111,7 +111,8 @@ function handleLose() {
   setPlayerLose()
   // save
   setTimeout(() => {
-    document.addEventListener("keydown", handleStart, { once: true })
+    //document.addEventListener(["keydown", "click"].forEach( handleStart, { once: true }))
+    ['keydown', 'click'].forEach(event => document.addEventListener(event, handleStart, {once: true }))
     startScreenElem.classList.remove("hide")
   }, 100)
 }

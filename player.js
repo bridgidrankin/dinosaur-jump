@@ -21,8 +21,8 @@ import {
     yVelocity = 0
     setCustomProperty(playerElem, "--bottom", 0)
     document.removeEventListener("keydown", onJump)
-    document.removeEventListener('click', onJump)
-    document.addEventListener('click', onJump)
+    document.removeEventListener('touchstart', onJump)
+    document.addEventListener('touchstart', onJump)
     document.addEventListener("keydown", onJump)
   }
   
