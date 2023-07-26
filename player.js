@@ -21,6 +21,8 @@ import {
     yVelocity = 0
     setCustomProperty(playerElem, "--bottom", 0)
     document.removeEventListener("keydown", onJump)
+    document.removeEventListener('click', onJump)
+    document.addEventListener('click', onJump)
     document.addEventListener("keydown", onJump)
   }
   
@@ -70,3 +72,4 @@ import {
     yVelocity = JUMP_SPEED
     isJumping = true
   }
+

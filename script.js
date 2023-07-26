@@ -75,11 +75,13 @@ function updateSpeedScale(delta) {
 }
 
 function updateScore(delta) {
+  // kolku score dobivas tuka se presmetue
   // console.log("delta u update score function = ", delta)
   score += delta * 0.01
   scoreElem.textContent = `Wei score: ${Math.floor(score)}` 
 }
 
+// kaa kje pozne
 function handleStart() {
   lastTime = null
   speedScale = 1
@@ -89,7 +91,7 @@ function handleStart() {
   setupObstacle()
   setupNft()
   startScreenElem.classList.add("hide")
-  // call this only when screen refreshes
+  // call this onnly wehne screen refershes
   window.requestAnimationFrame(update)
 }
 
