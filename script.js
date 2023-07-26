@@ -18,7 +18,8 @@ const nftScoreElem = document.querySelector("[data-nft-score ]")
 setPixelToGameScale()
 window.addEventListener("resize", setPixelToGameScale)
 //document.addEventListener("keydown", handleStart, { once: true })
-['keydown', 'click'].forEach(event => document.addEventListener(event, handleStart, {once: true }))
+document.addEventListener("click", handleStart, { once: true })
+// ['keydown', 'click'].forEach(event => document.addEventListener(event, handleStart, {once: true }))
 
 let lastTime
 let speedScale
@@ -113,7 +114,9 @@ function handleLose() {
   // save
   setTimeout(() => {
     //document.addEventListener(["keydown", "click"].forEach( handleStart, { once: true }))
-    ['keydown', 'click'].forEach(event => document.addEventListener(event, handleStart, {once: true }))
+    // ['keydown', 'click'].forEach(event => document.addEventListener(event, handleStart, {once: true }))
+    //document.addEventListener("keydown", handleStart, {once: TextTrackCueList})
+    document.addEventListener("click", handleStart, {once: TextTrackCueList})
     startScreenElem.classList.remove("hide")
   }, 100)
 }

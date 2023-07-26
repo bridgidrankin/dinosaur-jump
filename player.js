@@ -20,10 +20,10 @@ import {
     currentFrameTime = 0
     yVelocity = 0
     setCustomProperty(playerElem, "--bottom", 0)
-    document.removeEventListener("keydown", onJump)
-    document.removeEventListener('touchstart', onJump)
-    document.addEventListener('touchstart', onJump)
-    document.addEventListener("keydown", onJump)
+    //document.removeEventListener("keydown", onJump)
+    document.removeEventListener("click", onJump)
+    document.addEventListener("click", onJump)
+    //document.addEventListener("keydown", onJump)
   }
   
   export function updatePlayer(delta, speedScale) {
@@ -67,8 +67,8 @@ import {
   }
   
   function onJump(e) {
-    if (e.code !== "Space" || isJumping) return
-  
+    //if ((e.code !== "Space") || isJumping) return
+    if (isJumping) return
     yVelocity = JUMP_SPEED
     isJumping = true
   }
