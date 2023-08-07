@@ -105,11 +105,11 @@ function handleLose() {
   window.totalGweiScore += Math.floor(score)  
   window.totalNFTScore += nftScore
 
-  nftTotalScoreElem.textContent = `NFT total score: ${window.totalNFTScore}`
-  gweiTotalScoreEleme.textContent = `Wei total score ${window.totalGweiScore}`
+  nftTotalScoreElem.textContent = `Total Coins Collected: ${window.totalNFTScore}`
+  gweiTotalScoreEleme.textContent = `Total Distance Traveled ${window.totalGweiScore}`
 
   nftScore = 0
-  nftScoreElem.textContent = `nft score: ${nftScore}`
+  nftScoreElem.textContent = `Coins Collected: ${nftScore}`
   setPlayerLose()
   // save
   setTimeout(() => {
