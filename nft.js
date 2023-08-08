@@ -45,7 +45,7 @@ function createNft() {
   const nft = document.createElement("img")
   nft.dataset.nft = true
   // todo: set img drugo nft
-  nft.src = "imgs/coin1.png"
+  nft.src = "imgs/blueGem.png"
   // todo: smeni klasa nft
   nft.classList.add("nft")
   setCustomProperty(nft, "--left", 100)

@@ -9,6 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-color: lightgrey;
 }
 
 .game {
@@ -103,7 +104,7 @@ button {
 .obstacle {
   position: absolute;
   left: calc(var(--left) * 1%);
-  height: 30%;
+  height: 20%;
   bottom: 0;
 }
 

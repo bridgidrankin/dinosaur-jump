@@ -67,7 +67,7 @@ function checkIfWeGotNft() {
     const nftToRemove = document.querySelectorAll("[data-nft]")[0]
     nftToRemove.remove()
     nftScore += 1
-    nftScoreElem.textContent = `nft score: ${nftScore}`
+    nftScoreElem.textContent = `Coins: ${nftScore}`
   }
   return getNftRects().some(rect => isCollision(rect, playerRect))
 }
@@ -80,7 +80,7 @@ function updateScore(delta) {
   // kolku score dobivas tuka se presmetue
   // console.log("delta u update score function = ", delta)
   score += delta * 0.01
-  scoreElem.textContent = `Wei score: ${Math.floor(score)}` 
+  scoreElem.textContent = `Meters: ${Math.floor(score)}` 
 }
 
 // kaa kje pozne
@@ -109,7 +109,7 @@ function handleLose() {
   gweiTotalScoreEleme.textContent = `Total Distance Traveled ${window.totalGweiScore}`
 
   nftScore = 0
-  nftScoreElem.textContent = `Coins Collected: ${nftScore}`
+  nftScoreElem.textContent = `Coins: ${nftScore}`
   setPlayerLose()
   // save
   setTimeout(() => {

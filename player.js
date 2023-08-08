@@ -6,7 +6,7 @@ import {
   
   const playerElem = document.querySelector("[data-player]")
   const JUMP_SPEED = 0.45
-  const GRAVITY = 0.0015
+  const GRAVITY = 0.00145
   const PLAYER_FRAME_COUNT = 2
   const FRAME_TIME = 100
   

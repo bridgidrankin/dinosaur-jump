@@ -7,7 +7,7 @@ import {
   // ground and obstacle should move at the same speeed
   const SPEED = 0.05
   // min time to spawn obstacle
-  const OBSTACLE_INTERVAL_MIN = 500
+  const OBSTACLE_INTERVAL_MIN = 750
   // max time to spawn obstacle should be longer than 2000 miliseconds
   const OBSTACLE_INTERVAL_MAX = 2000
   // we need this element to add the elements to our game
