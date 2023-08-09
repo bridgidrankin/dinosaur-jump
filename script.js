@@ -1,7 +1,7 @@
 import { updateGround, setupGround } from "./ground.js"
 import { updatePlayer, setupPlayer, getPlayerRect, setPlayerLose } from "./player.js"
 import { updateObstacle, setupObstacle, getObstacleRects } from "./obstacle.js"
-import { updateNft, setupNft, getNftRects } from "./nft.js"
+import { updateGem, setupGem, getGemRects } from "./gem.js"
 
 const GAME_WIDTH = 100
 const GAME_HEIGHT = 30
@@ -10,21 +10,19 @@ const SPEED_SCALE_INCREASE = 0.00001
 const gameElem = document.querySelector("[data-game]")
 const scoreElem = document.querySelector("[data-score]")
 const startScreenElem = document.querySelector("[data-start-screen]")
-const gweiTotalScoreEleme = document.querySelector("[data-wei-total-score]")
-const nftTotalScoreElem = document.querySelector("[data-nft-total-score]")
+const distanceTotalScoreEleme = document.querySelector("[data-distance-total-score]")
+const gemTotalScoreElem = document.querySelector("[data-gem-total-score]")
 
-const nftScoreElem = document.querySelector("[data-nft-score ]")
+const gemScoreElem = document.querySelector("[data-gem-score ]")
 
 setPixelToGameScale()
 window.addEventListener("resize", setPixelToGameScale)
-//document.addEventListener("keydown", handleStart, { once: true })
 document.addEventListener("mousedown", handleStart, { once: true })
-// ['keydown', 'click'].forEach(event => document.addEventListener(event, handleStart, {once: true }))
 
 let lastTime
 let speedScale
 let score
-let nftScore = 0
+let gemScore = 0
 
 function update(time) {
   if (lastTime == null) {
@@ -37,11 +35,12 @@ function update(time) {
   updateGround(delta, speedScale)
   updatePlayer(delta, speedScale)
   updateObstacle(delta, speedScale)
-  updateNft(delta, speedScale)
+  updateGem(delta, speedScale)
   updateSpeedScale(delta)
   updateScore(delta)
-  checkIfWeGotNft()
-  // if there is a collision lose the game
+  checkIfWeGotGem()
+
+  // if there is a collision, lose the game
   if (checkLose()) return handleLose()
   lastTime = time
   window.requestAnimationFrame(update)
@@ -61,15 +60,15 @@ function isCollision(rect1, rect2) {
   )
 }
 
-function checkIfWeGotNft() {
+function checkIfWeGotGem() {
   const playerRect = getPlayerRect()
-  if(getNftRects().some(rect => isCollision(rect, playerRect))) {
-    const nftToRemove = document.querySelectorAll("[data-nft]")[0]
-    nftToRemove.remove()
-    nftScore += 1
-    nftScoreElem.textContent = `Coins: ${nftScore}`
+  if(getGemRects().some(rect => isCollision(rect, playerRect))) {
+    const gemToRemove = document.querySelectorAll("[data-gem]")[0]
+    gemToRemove.remove()
+    gemScore += 1
+    gemScoreElem.textContent = `Gems: ${gemScore}`
   }
-  return getNftRects().some(rect => isCollision(rect, playerRect))
+  return getGemRects().some(rect => isCollision(rect, playerRect))
 }
 
 function updateSpeedScale(delta) {
@@ -77,13 +76,10 @@ function updateSpeedScale(delta) {
 }
 
 function updateScore(delta) {
-  // kolku score dobivas tuka se presmetue
-  // console.log("delta u update score function = ", delta)
   score += delta * 0.01
   scoreElem.textContent = `Meters: ${Math.floor(score)}` 
 }
 
-// kaa kje pozne
 function handleStart() {
   lastTime = null
   speedScale = 1
@@ -91,31 +87,27 @@ function handleStart() {
   setupGround()
   setupPlayer()
   setupObstacle()
-  setupNft()
+  setupGem()
   startScreenElem.classList.add("hide")
-  // call this onnly wehne screen refershes
+  // call this only when screen refreshes
   window.requestAnimationFrame(update)
 }
 
-
-window.totalNFTScore = 0
-window.totalGweiScore = 0
+window.totalGemScore = 0
+window.totalDistanceScore = 0
 
 function handleLose() {
-  window.totalGweiScore += Math.floor(score)  
-  window.totalNFTScore += nftScore
+  window.totalDistanceScore += Math.floor(score)  
+  window.totalGemScore += gemScore
 
-  nftTotalScoreElem.textContent = `Total Coins Collected: ${window.totalNFTScore}`
-  gweiTotalScoreEleme.textContent = `Total Distance Traveled ${window.totalGweiScore}`
+  gemTotalScoreElem.textContent = `Total Gems Collected: ${window.totalGemScore}`
+  distanceTotalScoreEleme.textContent = `Total Distance Traveled: ${window.totalDistanceScore}`
 
-  nftScore = 0
-  nftScoreElem.textContent = `Coins: ${nftScore}`
+  gemScore = 0
+  gemScoreElem.textContent = `Gems: ${gemScore}`
   setPlayerLose()
   // save
   setTimeout(() => {
-    //document.addEventListener(["keydown", "click"].forEach( handleStart, { once: true }))
-    // ['keydown', 'click'].forEach(event => document.addEventListener(event, handleStart, {once: true }))
-    //document.addEventListener("keydown", handleStart, {once: TextTrackCueList})
     document.addEventListener("click", handleStart, {once: TextTrackCueList})
     startScreenElem.classList.remove("hide")
   }, 100)

@@ -14,16 +14,15 @@ import {
   let playerFrame
   let currentFrameTime
   let yVelocity
+
   export function setupPlayer() {
     isJumping = false
     playerFrame = 0
     currentFrameTime = 0
     yVelocity = 0
     setCustomProperty(playerElem, "--bottom", 0)
-    //document.removeEventListener("keydown", onJump)
     document.removeEventListener("click", onJump)
     document.addEventListener("click", onJump)
-    //document.addEventListener("keydown", onJump)
   }
   
   export function updatePlayer(delta, speedScale) {
@@ -67,7 +66,6 @@ import {
   }
   
   function onJump(e) {
-    //if ((e.code !== "Space") || isJumping) return
     if (isJumping) return
     yVelocity = JUMP_SPEED
     isJumping = true

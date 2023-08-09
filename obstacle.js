@@ -6,11 +6,8 @@ import {
   
   // ground and obstacle should move at the same speeed
   const SPEED = 0.05
-  // min time to spawn obstacle
   const OBSTACLE_INTERVAL_MIN = 750
-  // max time to spawn obstacle should be longer than 2000 miliseconds
-  const OBSTACLE_INTERVAL_MAX = 2000
-  // we need this element to add the elements to our game
+  const OBSTACLE_INTERVAL_MAX = 2500
   const worldElem = document.querySelector("[data-game]")
   
   let nextObstacleTime
@@ -33,7 +30,6 @@ import {
   
     if (nextObstacleTime <= 0) {
       createObstacle()
-      // speedScale ima tuka za da spawn pobrzo obstacle u igrata za da bide potesko
       nextObstacleTime =
         randomNumberBetween(OBSTACLE_INTERVAL_MIN, OBSTACLE_INTERVAL_MAX) / speedScale
     }
@@ -51,9 +47,7 @@ import {
   function createObstacle() {
     const obstacle = document.createElement("img")
     obstacle.dataset.obstacle = true
-    // todo: set img drugo nft
     obstacle.src = "imgs/obstacle.png"
-    // todo: smeni klasa nft
     obstacle.classList.add("obstacle")
     setCustomProperty(obstacle, "--left", 100)
     worldElem.append(obstacle)
